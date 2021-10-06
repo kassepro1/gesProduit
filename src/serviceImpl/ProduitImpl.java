@@ -2,6 +2,8 @@ package serviceImpl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import domaine.Categorie;
@@ -38,5 +40,35 @@ public class ProduitImpl implements IProduit{
 		 p.setCategorie(cat);
 		return p;
 	}
+
+	@Override
+	public Produit findProduitById(int id, List<Produit> pdts) {
+		Produit prod = pdts.stream().filter(p->p.getPrice()==id).findFirst().orElse(new Produit());
+		return prod;
+	}
+
+	@Override
+	public Produit updateProduit(int id, Produit p,List<Produit> pdts) {
+		Produit produit = findProduitById(id, pdts);
+		p.setId(produit.getId());
+		int index = pdts.indexOf(produit);
+		pdts.set(index, p);
+		return pdts.get(index);
+	}
+
+	@Override
+	public void deleteProduit(int id, List<Produit> pdts) {
+		Produit p = findProduitById(id, pdts);
+		pdts.remove(p);
+	}
+
+	@Override
+	public void showProducts(List<Produit> pdts) {
+	  pdts.stream().forEach(p->{
+		  System.out.println(p);
+	  });
+	}
+
+
 
 }

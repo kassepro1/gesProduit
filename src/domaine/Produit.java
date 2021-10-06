@@ -53,6 +53,28 @@ public class Produit {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+
+	public Produit(int id, String nom, double price, Date dateP, Categorie categorie) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.price = price;
+		this.dateP = dateP;
+		this.categorie = categorie;
+	}
+
+	public Produit() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Produit [id=" + id + ", nom=" + nom + ", price=" + price + ", dateP=" + dateP + ", categorie="
+				+ categorie + "]";
+	}
+	
+	
 	
 	
 
